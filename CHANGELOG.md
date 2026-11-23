@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 ### Changed
-- [DAS-2560](https://bugs.earthdata.nasa.gov/browse/DAS-2560): Order of precedence swapped for selecting variables to process. This change will now prefer to process only the variable named by the `harmony:variable` propery on the input STAC item if found. If no harmony property is found, net2cog Harmony Message variable processing will continue as usual.
+- [DAS-2560](https://bugs.earthdata.nasa.gov/browse/DAS-2560): `harmony:variable` on the input STAC item now takes precedence over variables in the Harmony Message. When it is present, only that variable is processed. When it is absent, variable selection is unchanged.
 ### Deprecated
 ### Removed
 ### Fixed

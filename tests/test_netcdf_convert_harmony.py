@@ -156,8 +156,12 @@ def _invoke_service(message_file, catalog_file, metadata_dir):
     return mock_netcdf_converter
 
 
-def test_service_item_variable(
-    mock_environ, temp_dir, smap_rss_l3_sss_operation_message, smap_rss_l3_sss_stac, smap_rss_l3_sss_item
+def test_item_variable_no_message_variables(
+    mock_environ,
+    temp_dir,
+    smap_rss_l3_sss_operation_message,
+    smap_rss_l3_sss_stac,
+    smap_rss_l3_sss_item,
 ):
     """When the message has no variables, the ``harmony:variable`` from the
     input STAC item properties is the only variable processed.
@@ -180,8 +184,10 @@ def test_item_variable_overrides_message_variables(
     smap_rss_l3_sss_stac,
     smap_rss_l3_sss_item,
 ):
-    """``harmony:variable`` in the input STAC item properties
-    takes precedence over Variables in the Harmony message"""
+    """``harmony:variable`` in the input STAC item properties takes precedence
+    over Variables in the Harmony message
+
+    """
     _set_message_variables(smap_rss_l3_sss_operation_message,
                            [{'name': 'message_variable'}, {'name': 'another_var'}])
     _set_item_variable(smap_rss_l3_sss_item, 'harmony_item_variable')
@@ -199,8 +205,10 @@ def test_no_item_variable_processes_message_variables(
     smap_rss_l3_sss_stac,
     smap_rss_l3_sss_item,
 ):
-    """When the input STAC item has no ``harmony:variable``
-    Harmony Message variables are processed"""
+    """When the input STAC item has no ``harmony:variable`` Harmony Message
+    variables are processed
+
+    """
     _set_message_variables(smap_rss_l3_sss_operation_message,
                            [{'name': 'message_variable'}, {'name': 'another_var'}])
 
@@ -210,7 +218,7 @@ def test_no_item_variable_processes_message_variables(
 
     assert mock_converter.call_args.args[2] == ['message_variable', 'another_var']
 
-def test_service_no_item_variable_all_variables(
+def test_no_item_variable_processes_all_variables(
     mock_environ, temp_dir, smap_rss_l3_sss_operation_message, smap_rss_l3_sss_stac
 ):
     """Without message variables or a ``harmony:variable``, all variables are
