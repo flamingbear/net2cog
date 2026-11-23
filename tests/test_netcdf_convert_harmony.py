@@ -6,7 +6,6 @@ test_netcdf_convert_harmony.py
 Test the Harmony service by invoking it as Harmony would.
 """
 import json
-import os
 import sys
 from unittest.mock import patch
 
