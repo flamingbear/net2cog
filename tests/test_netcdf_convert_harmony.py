@@ -185,7 +185,7 @@ def test_item_variable_overrides_message_variables(
     smap_rss_l3_sss_item,
 ):
     """``harmony:variable`` in the input STAC item properties takes precedence
-    over Variables in the Harmony message
+    over variables in the Harmony message.
 
     """
     _set_message_variables(smap_rss_l3_sss_operation_message,
@@ -206,7 +206,7 @@ def test_no_item_variable_processes_message_variables(
     smap_rss_l3_sss_item,
 ):
     """When the input STAC item has no ``harmony:variable`` Harmony Message
-    variables are processed
+    variables are processed.
 
     """
     _set_message_variables(smap_rss_l3_sss_operation_message,
