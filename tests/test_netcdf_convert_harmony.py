@@ -192,8 +192,25 @@ def test_item_variable_overrides_message_variables(
 
     assert mock_converter.call_args.args[2] == ['harmony_item_variable']
 
+def test_no_item_variable_processes_message_variables(
+    mock_environ,
+    temp_dir,
+    smap_rss_l3_sss_operation_message,
+    smap_rss_l3_sss_stac,
+    smap_rss_l3_sss_item,
+):
+    """When the input STAC item has no ``harmony:variable``
+    Harmony Message variables are processed"""
+    _set_message_variables(smap_rss_l3_sss_operation_message,
+                           [{'name': 'message_variable'}, {'name': 'another_var'}])
 
-def test_service_no_item_variable(
+    mock_converter = _invoke_service(
+        smap_rss_l3_sss_operation_message, smap_rss_l3_sss_stac, temp_dir
+    )
+
+    assert mock_converter.call_args.args[2] == ['message_variable', 'another_var']
+
+def test_service_no_item_variable_all_variables(
     mock_environ, temp_dir, smap_rss_l3_sss_operation_message, smap_rss_l3_sss_stac
 ):
     """Without message variables or a ``harmony:variable``, all variables are
