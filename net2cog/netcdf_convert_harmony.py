@@ -81,7 +81,7 @@ class NetcdfConverterService(BaseHarmonyAdapter):
             message_variables = source.process('variables')
             item_variable = item.properties.get('harmony:variable')
             if item_variable:
-                var_list = [item.properties['harmony:variable']]
+                var_list = [item_variable]
                 self.logger.info('Processing harmony:variable from Item.properties: %s', var_list)
             elif message_variables:
                 var_list = [var.name for var in message_variables]
